@@ -23,7 +23,7 @@ package src
 			
 			
 			
-			var sb2:SoundButton = new SoundButton(0xffff00, "Hello");
+			var sb2:SoundButton = new SoundButton(0xffff00, "don't press me");
 			sb2.x = 200;
 			sb2.y = 150;
 			addChild(sb2);
