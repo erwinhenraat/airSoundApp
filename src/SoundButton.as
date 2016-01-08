@@ -2,11 +2,13 @@ package src
 {
 	import flash.display.Sprite;
 	import flash.media.Sound;
+	import flash.media.SoundChannel;
 	import flash.media.SoundTransform;
 	import flash.net.URLRequest;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
 	import flash.events.TouchEvent;
+	import flash.events.Event;
 	/**
 	 * ...
 	 * @author erwin henraat
@@ -15,8 +17,13 @@ package src
 	{
 		private var _sound:Sound;
 		private var _sndTrans:SoundTransform;
-		public function SoundButton(color:uint, label:String) 
-		{			
+		private var _channels:Array;
+		public function SoundButton(color:uint, label:String, channels:Array) 
+		{
+			_channels = channels;
+			/*
+			 * Just some drawings and text
+			 */
 			var textFormat:TextFormat = new TextFormat();
 			textFormat.font = "verdana";
 			textFormat.size = 20;
@@ -32,33 +39,34 @@ package src
 			var height:Number = textfield.textHeight +15;
 			
 			this.graphics.beginFill(color, alpha);
+			this.graphics.lineStyle(0x000000);
 			this.graphics.drawRect(0, 0, width, height);
 			
-			this.addEventListener(TouchEvent.TOUCH_TAP, play);
-		
+			/*
+			 * object needed for Adjusting volume and panning
+			 */
 			_sndTrans = new SoundTransform(1, 0);
 			
-		}		
+			/*
+			 * listen to a tap
+			 */			
+			this.addEventListener(TouchEvent.TOUCH_TAP, play);			
+		}
 		public function loadSound(url:String):void
 		{
 			var urlReq:URLRequest = new URLRequest(url);
-			_sound = new Sound(urlReq);			
-			
+			_sound = new Sound(urlReq);				
 		}
 		public function changePan(value:Number):void
 		{
-			_sndTrans.pan = value;
-			
+			_sndTrans.pan = value;			
 		}
 		public function changeVolume(value:Number):void
 		{
-			_sndTrans.volume = value;
-			
+			_sndTrans.volume = value;			
 		}
 		private function play(e:TouchEvent):void 
 		{
-			trace("play");
-			
 			if (_sound == null)
 			{
 				
@@ -66,10 +74,8 @@ package src
 				
 			}else
 			{
-				
-				_sound.play(0, 1, _sndTrans);	
-			}
-			
+				_channels.push(_sound.play(0, 1, _sndTrans));	
+			}	
 			
 		}
 		
