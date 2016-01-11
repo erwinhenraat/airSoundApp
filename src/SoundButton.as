@@ -16,7 +16,7 @@ package src
 	public class SoundButton extends Sprite
 	{
 		private var _sound:Sound;
-		private var _sndTrans:SoundTransform;
+		private var _sndTrans:SoundTransform;//This variable is used to change sound volume and panning
 		private var _channels:Array;
 		public function SoundButton(color:uint, label:String, channels:Array) 
 		{
@@ -59,6 +59,13 @@ package src
 		}
 		public function loadSound(url:String):void
 		{
+			/* 
+			 * 
+			 * When creating a new Sound object you need a URLRequest object to load the sound
+			 * The URLRequest Class uses a String variable (url) with a link to the soundfile
+			 * 
+			 */
+			
 			var urlReq:URLRequest = new URLRequest(url);
 			_sound = new Sound(urlReq);				
 		}
@@ -84,6 +91,14 @@ package src
 				
 			}else
 			{
+				
+				/*
+				 * 
+				 * If the sound exists play it!
+				 * the .play() method returns the sound channel in which the sound is being played
+				 * save the channel in a variable or array to use it later.
+				 * 
+				 */
 				_channels.push(_sound.play(0, 1, _sndTrans));	
 			}				
 		}		

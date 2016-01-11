@@ -39,7 +39,6 @@ package src
 			 * another sound button which gives a custom error. Why? tip check out the play() finction in the SoundButton class
 			 */
 			var sb2:SoundButton = new SoundButton(0xffff00, "don't press me", channels);
-			sb2.loadSound("http://hnr.hosts.ma-cloud.nl/media/sound/cow.mp3");
 			sb2.x = 200;
 			sb2.y = 150;
 			addChild(sb2);
