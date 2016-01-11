@@ -12,6 +12,11 @@ package src
 	 */
 	public class Main extends MovieClip
 	{
+		/*
+		 * An array used to store all sound channels
+		 * the method Sound.play() returns a new SoundChannel object
+		 * the channels array wil be sent to the SoundButton and StopButton objects via the constructor arguments
+		 * */		
 		private var channels:Array = [];
 		public function Main() 
 		{
@@ -34,11 +39,12 @@ package src
 			 * another sound button which gives a custom error. Why? tip check out the play() finction in the SoundButton class
 			 */
 			var sb2:SoundButton = new SoundButton(0xffff00, "don't press me", channels);
+			sb2.loadSound("http://hnr.hosts.ma-cloud.nl/media/sound/cow.mp3");
 			sb2.x = 200;
 			sb2.y = 150;
 			addChild(sb2);
 			
-			
+						
 			/*
 			 * another button used to stop all sounds in the channel
 			 */

@@ -20,6 +20,11 @@ package src
 		private var _channels:Array;
 		public function SoundButton(color:uint, label:String, channels:Array) 
 		{
+			/*
+			 * 
+			 * Make a reference to the channels variable that's passed as an argument
+			 * 
+			 */
 			_channels = channels;
 			/*
 			 * Just some drawings and text
@@ -45,7 +50,7 @@ package src
 			/*
 			 * object needed for Adjusting volume and panning
 			 */
-			_sndTrans = new SoundTransform(1, 0);
+			_sndTrans = new SoundTransform(1,0);
 			
 			/*
 			 * listen to a tap
@@ -67,19 +72,20 @@ package src
 		}
 		private function play(e:TouchEvent):void 
 		{
+			/*
+			 * 
+			 * Check if the variable _sound has a value
+			 * if it's null there is no sound loaded and throw a custom errormessage
+			 * 
+			 */			
 			if (_sound == null)
 			{
-				
 				throw new Error("No sound is loaded into " + this + " use loadSound() method", 1);
 				
 			}else
 			{
 				_channels.push(_sound.play(0, 1, _sndTrans));	
-			}	
-			
-		}
-		
-		
+			}				
+		}		
 	}
-
 }

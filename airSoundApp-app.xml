@@ -19,7 +19,7 @@
 <application xmlns="http://ns.adobe.com/air/application/14.0">
   <id>airSoundApp</id>
   <versionNumber>1.0.0</versionNumber>
-  <versionLabel></versionLabel>
+  <versionLabel/>
   <filename>airSoundApp</filename>
   <description/>
   <name>airSoundApp</name>
